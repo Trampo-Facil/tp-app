@@ -1,4 +1,4 @@
-import getErrorMessage from "@/base/functions/erros";
+import getErrorMessage from "../functions/error";
 
 const API_URL = "https://api.example.com"; // URL base da sua API
 const SECURITY_ENABLED = false; // Habilitar ou desabilitar a segurança
