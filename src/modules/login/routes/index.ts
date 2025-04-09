@@ -3,8 +3,8 @@ import IndexVue from "../views/IndexVue.vue";
 
 const routes: RouteRecordRaw[] = [
   {
-    path: "/",
-    name: "Home",
+    path: "/login",
+    name: "login",
     component: IndexVue,
   },
 ];
