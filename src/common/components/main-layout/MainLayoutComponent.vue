@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <SideMenuComponent />
-    conteudo
+    <slot />
   </div>
 </template>
 <script setup lang="ts">
