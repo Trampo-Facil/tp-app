@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Menu } from "lucide-vue-next";
-import { defineEmits } from "vue";
 
 const emit = defineEmits(["toggleDrawer"]);
 </script>
