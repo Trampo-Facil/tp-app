@@ -1,23 +1,38 @@
 <script setup lang="ts">
-import { Heart, PlayCircle } from "lucide-vue-next";
-const songs = [
+import { Phone, Info, Star } from "lucide-vue-next";
+
+const occupations = [
   {
     id: 1,
-    artist: "Dio Lupa",
-    song: "Remaining Reason",
-    image: "https://img.daisyui.com/images/profile/demo/1@94.webp",
+    name: "Tia bel",
+    occupation: "Faxineira",
+    avatar: "https://img.daisyui.com/images/profile/demo/1@94.webp",
+    rating: 4.5,
+    qtdRating: 12
   },
   {
     id: 2,
-    artist: "Ellie Beilish",
-    song: "Bears of a fever",
-    image: "https://img.daisyui.com/images/profile/demo/4@94.webp",
+    name: "Gótica doida",
+    occupation: "Proplayer",
+    avatar: "https://img.daisyui.com/images/profile/demo/4@94.webp",
+    rating: 5,
+    qtdRating: 34
   },
   {
     id: 3,
-    artist: "Sabrino Gardener",
-    song: "Cappuccino",
-    image: "https://img.daisyui.com/images/profile/demo/3@94.webp",
+    name: "Sabrino",
+    occupation: "Atendente",
+    avatar: "https://img.daisyui.com/images/profile/demo/3@94.webp",
+    rating: 2.3,
+    qtdRating: 5
+  },
+  {
+    id: 4,
+    name: "3oitão",
+    occupation: "Investidor",
+    avatar: "https://img.daisyui.com/images/profile/demo/2@94.webp",
+    rating: 3.6,
+    qtdRating: 9
   },
 ];
 </script>
@@ -25,32 +40,39 @@ const songs = [
 <template>
   <ul class="list bg-base-100 rounded-box shadow-md">
     <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">
-      Most played songs this week
+      Top trabalhores com avaliações mais alta
     </li>
-    <li
-      v-for="song in songs"
-      :key="song.id"
-      class="list-row flex items-center gap-4"
-    >
-      <div class="bg- rounded-box flex items-center gap-4 p-2">
+    <li v-for="occupation in occupations" :key="occupation.id" class="list-row flex items-center gap-4">
+      <div class="flex items-center gap-4 p-2 w-full">
         <div>
-          <img
-            class="size-10 rounded-box"
-            :src="song.image"
-            alt="Artist image"
-          />
+          <img class="size-20 rounded-full" :src="occupation.avatar" alt="name image" />
         </div>
-        <div>
-          <div>{{ song.artist }}</div>
+        <div class="flex-1 flex flex-col gap-1">
+          <div>{{ occupation.name }}</div>
           <div class="text-xs uppercase font-semibold opacity-60">
-            {{ song.song }}
+            {{ occupation.occupation }}
+          </div>
+          <div class="flex items-center mt-1">
+            <div class="flex gap-0.5">
+              <template v-for="index in 5" :key="index">
+                <Star v-if="index <= Math.floor(occupation.rating)" class="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                <div v-else-if="index === Math.ceil(occupation.rating)" class="relative w-4 h-4">
+                  <Star class="absolute w-4 h-4 text-yellow-400 fill-yellow-400" :style="{
+                    clipPath: `inset(0 ${100 - (occupation.rating % 1) * 100}% 0 0)`
+                  }" />
+                  <Star class="w-4 h-4 text-gray-300 fill-none" />
+                </div>
+                <Star v-else class="w-4 h-4 text-gray-300 fill-none" />
+              </template>
+            </div>
+            <span class="ml-2 text-xs text-gray-500">({{ occupation.qtdRating }})</span>
           </div>
         </div>
         <button class="btn btn-square btn-ghost">
-          <Heart />
+          <Phone />
         </button>
         <button class="btn btn-square btn-ghost">
-          <PlayCircle />
+          <Info />
         </button>
       </div>
     </li>
